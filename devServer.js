@@ -1,4 +1,3 @@
-console.log("asdfasdfasdf");
 
 require('core-js/fn/object/assign');
 
@@ -10,8 +9,9 @@ const WebpackDevServer = require('webpack-dev-server');
 
 const config = require('./webpack.config')
 
+
 new WebpackDevServer(webpack(config), config.devServer)
-    .listen(config.port, 'localhost', function (err) {
+    .listen(config.port, '0.0.0.0', function (err) {
           if (err) {
             console.log(err);
           }

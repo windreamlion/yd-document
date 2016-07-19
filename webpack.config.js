@@ -7,30 +7,32 @@ const myLocalIP = require('my-local-ip');
 const port = 3000;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const examplesPath = path.join(__dirname, '/');
+const examplesPath = path.join(__dirname, '/dist/');
 const host = myLocalIP();
 
+console.log("host:",host)
+//+ host + ':' + port
 var config = {
     port:port,
     devtool: 'eval',
     devServer: {
         historyApiFallback: true,
         stats: {colors: true},
-        publicPath: '/',
+        publicPath: '/dist/',
         noInfo: false,
         port: port,
         hot: true
-    },
+        },
     entry: [
-        'webpack-dev-server/client?http://' + host + ':' + port,
+        'webpack-dev-server/client?http://localhost:3000' ,
         'webpack/hot/only-dev-server',
         './src/index'
     ],
 
     output: {
         path: path.join(__dirname, '/'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        filename: 'app.js',
+        publicPath: '/dist/'
     },
     resolve: {
         extensions: ["", ".jsx", ".js", ".scss"],
