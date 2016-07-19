@@ -7,7 +7,7 @@ const myLocalIP = require('my-local-ip');
 const port = 3000;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const examplesPath = path.join(__dirname, '/dist/');
+const examplesPath = path.join(__dirname, '/');
 const host = myLocalIP();
 
 console.log("host:",host)
@@ -30,7 +30,7 @@ var config = {
     ],
 
     output: {
-        path: path.join(__dirname, '/'),
+        path: path.join(__dirname, 'dist'),
         filename: 'app.js',
         publicPath: '/dist/'
     },

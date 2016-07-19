@@ -1,7 +1,7 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "yd-canvas",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "canvas for Youde",
   "scripts": {
     "clean": "rimraf lib",
     "build:uncompressed": "cross-env NODE_ENV=production webpack --config webpack.config.build.js",
@@ -14,22 +14,15 @@
     "url": "https://github.com/gaearon/react-hot-boilerplate.git"
   },
   "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
+    "canvas",
+    "youde-component"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "lion",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/windreamlion/yd-document/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/windreamlion/yd-document#readme",
   "devDependencies": {
     "autoprefixer": "~6.3.1",
     "babel-core": "^6.0.20",
