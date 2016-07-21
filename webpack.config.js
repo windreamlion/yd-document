@@ -4,16 +4,16 @@ var autoprefixer = require('autoprefixer');
 
 const myLocalIP = require('my-local-ip');
 
-const port = 3000;
+const port = 8080;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const examplesPath = path.join(__dirname, '/');
 const host = myLocalIP();
 
-console.log("host:",host)
+console.log("host:", host);
 //+ host + ':' + port
 var config = {
-    port:port,
+    port: port,
     devtool: 'eval',
     devServer: {
         historyApiFallback: true,
@@ -22,9 +22,9 @@ var config = {
         noInfo: false,
         port: port,
         hot: true
-        },
+    },
     entry: [
-        'webpack-dev-server/client?http://localhost:3000' ,
+        'webpack-dev-server/client?http://localhost:8080',
         'webpack/hot/only-dev-server',
         './src/index'
     ],
@@ -34,6 +34,7 @@ var config = {
         filename: 'app.js',
         publicPath: '/dist/'
     },
+
     resolve: {
         extensions: ["", ".jsx", ".js", ".scss"],
         alias: {
@@ -42,26 +43,11 @@ var config = {
         },
     },
 
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-
-        new HtmlWebpackPlugin({
-            title: 'React Sketch',
-            description: 'Sketch Element for React based applications, backed-up by fabricjs as its core',
-            keywords: ['react', 'canvas', 'sketch', 'fabricjs', 'fabric.js'],
-            template: path.join(examplesPath, 'index.html'),
-            inject: 'body',
-            filename: 'index.html',
-            chunks: ['examples']
-        }),
-        new OpenBrowserPlugin({url: 'http://localhost:' + port})
-    ],
     module: {
         loaders: [
             {
                 test: /\.(js|jsx)$/,
-                loaders: ['react-hot','babel'],
+                loaders: ['react-hot', 'babel'],
                 include: path.join(__dirname, 'src'),
                 exclude: path.join(__dirname, 'node_modules'),
             },
@@ -103,9 +89,23 @@ var config = {
         ],
         noParse: [],
     },
-    postcss: function () {
-        return [autoprefixer];
-    },
+
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+
+        new HtmlWebpackPlugin({
+            title: 'React Sketch',
+            description: 'Sketch Element for React based applications, backed-up by fabricjs as its core',
+            keywords: ['react', 'canvas', 'sketch', 'fabricjs', 'fabric.js'],
+            template: path.join(examplesPath, 'index.html'),
+            inject: 'body',
+            filename: 'index.html',
+            chunks: ['examples']
+        }),
+        new OpenBrowserPlugin({url: 'http://localhost:' + port})
+    ]
+
 };
 //
 // deps.forEach(function (dep) {
