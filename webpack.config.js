@@ -7,7 +7,10 @@ const myLocalIP = require('my-local-ip');
 const port = 8080;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const examplesPath = path.join(__dirname, '/');
+
+const srcPath = path.join(__dirname, 'src');
+const examplePath = path.join(__dirname, 'example');
+
 const host = myLocalIP();
 
 console.log("host:", host);
@@ -16,9 +19,10 @@ var config = {
     port: port,
     devtool: 'eval',
     devServer: {
+        contentBase:'/',
         historyApiFallback: true,
         stats: {colors: true},
-        publicPath: '/dist/',
+        publicPath: '/',
         noInfo: false,
         port: port,
         hot: true
@@ -30,17 +34,16 @@ var config = {
     ],
 
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'app.js',
-        publicPath: '/dist/'
+        path: path.resolve(__dirname, '/'),
+        filename: './dist/app.js'
     },
 
     resolve: {
-        extensions: ["", ".jsx", ".js", ".scss"],
-        alias: {
-            'react-fabricjs': path.join(__dirname, 'src'),
-            'react-fabricjs/lib': path.join(__dirname, 'src'),
-        },
+        extensions: ["", ".jsx", ".js", ".scss"]
+        // alias: {
+        //     'react-fabricjs': path.join(__dirname, 'src'),
+        //     'react-fabricjs/lib': path.join(__dirname, 'src'),
+        // },
     },
 
     module: {
@@ -68,7 +71,7 @@ var config = {
                     'postcss-loader',
                     'sass-loader',
                 ],
-                include: path.join(__dirname, 'example'),
+                include: path.join(__dirname, 'src'),
             },
             // {
             // 	test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -96,12 +99,10 @@ var config = {
 
         new HtmlWebpackPlugin({
             title: 'React Sketch',
-            description: 'Sketch Element for React based applications, backed-up by fabricjs as its core',
-            keywords: ['react', 'canvas', 'sketch', 'fabricjs', 'fabric.js'],
-            template: path.join(examplesPath, 'index.html'),
-            inject: 'body',
+            template: path.join(examplePath, 'base.ejs'),
+            inject: 'true',
             filename: 'index.html',
-            chunks: ['examples']
+            chunks: ['src']
         }),
         new OpenBrowserPlugin({url: 'http://localhost:' + port})
     ]
